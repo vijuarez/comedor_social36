@@ -40,8 +40,8 @@ else:
 
     volmax = 500
 
-    amin = 1
-    amax = 5
+    amin = 4
+    amax = 7
 
     vis_promedio, vis_desviacion = 150, 25
     cos_promedio, cos_desviacion = 1000, 800
