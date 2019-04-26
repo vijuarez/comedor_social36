@@ -70,10 +70,10 @@ data['proteina'] = [0] * alimentos
 data['carbohidrato'] = [0] * alimentos
 
 for i in range(alimentos):
-    verdura = max(0, randint(-1, 1))
-    fruta = 0 if verdura else randint(0, 1)
-    proteina = 0  if fruta else randint(0, 1)
-    carbohidrato = randint(0, 1)
+    verdura = max(0, randint(-2, 1))
+    fruta = 0 if verdura else randint(-1, 1)
+    proteina = 0 if fruta else randint(0, 1)
+    carbohidrato = 0 if proteina else 1
     data['verdura'][i] = verdura
     data['fruta'][i] = fruta
     data['proteina'][i] = proteina
