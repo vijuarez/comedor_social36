@@ -43,9 +43,9 @@ else:
     amin = 4
     amax = 7
 
-    vis_promedio, vis_desviacion = 150, 25
+    vis_promedio, vis_desviacion = 70, 30
     cos_promedio, cos_desviacion = 1000, 800
-    don_promedio, don_desviacion = 15000, 6000
+    don_promedio, don_desviacion = 170000//7, 20000//7
     dal_promedio, dal_desviacion = 8, 5
     da_promedio, da_desviacion = 15, 15
     vol_promedio, vol_desviacion = 1, 0
