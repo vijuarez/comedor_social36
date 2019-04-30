@@ -46,8 +46,8 @@ else:
     vis_promedio, vis_desviacion = 70, 30
     cos_promedio, cos_desviacion = 1000, 800
     don_promedio, don_desviacion = 170000//7, 20000//7
-    dal_promedio, dal_desviacion = 8, 5
-    da_promedio, da_desviacion = 15, 15
+    dal_promedio, dal_desviacion = 4, 2
+    da_promedio, da_desviacion = 4, 2
     vol_promedio, vol_desviacion = 1, 0
 
 data = {}
@@ -62,7 +62,8 @@ data['visitas'] = [max(0, int(x)) for x in np.random.normal(vis_promedio, vis_de
 data['cantidad_alimento'] = [[max(0, int(x)) for x in np.random.normal(dal_promedio, dal_desviacion, dias)] for a in range(alimentos)]
 data['entrada'] = entrada
 data['volumen_alimentos'] = [max(1, int(x)) for x in np.random.normal(vol_promedio, vol_desviacion, alimentos)]
-data['duracion_alimentos'] = [max(10, int(x)) for x in np.random.normal(da_promedio, da_desviacion, alimentos)]
+# data['duracion_alimentos'] = [max(10, int(x)) for x in np.random.normal(da_promedio, da_desviacion, alimentos)]
+data['duracion_alimentos'] = [0] * alimentos
 data['costo_alimento'] = [max(100, int(x)) for x in np.random.normal(cos_promedio, cos_desviacion, alimentos)]
 data['verdura'] = [0] * alimentos
 data['fruta'] = [0] * alimentos
@@ -70,14 +71,24 @@ data['proteina'] = [0] * alimentos
 data['carbohidrato'] = [0] * alimentos
 
 for i in range(alimentos):
-    verdura = max(0, randint(-2, 1))
-    fruta = 0 if verdura else max(0, randint(-1, 1))
-    proteina = 0 if fruta else randint(0, 1)
-    carbohidrato = 0 if proteina else 1
+    choice = randint(0,3)
+    verdura = 1 if choice == 0 else 0
+    fruta = 1 if choice == 1 else 0
+    proteina = 1 if choice == 2 else 0
+    carbohidrato = 1 if choice == 3 else 0
+    # verdura = max(0, randint(-1, 1))
+    # fruta = 0 if verdura else max(0, randint(-1, 1))
+    # proteina = 0 if fruta else randint(0, 1)
+    # carbohidrato = 0 if proteina else 1
     data['verdura'][i] = verdura
     data['fruta'][i] = fruta
     data['proteina'][i] = proteina
     data['carbohidrato'][i] = carbohidrato
+
+    if carbohidrato:
+        data['duracion_alimentos'][i] = max(10, int(np.random.normal(50, 10)))
+    else:
+        data['duracion_alimentos'][i] = max(1, int(np.random.normal(da_promedio, da_desviacion)))
 
 with open('data.json', 'w') as f:
     json.dump(data, f)
