@@ -1,6 +1,8 @@
 from tqdm import tqdm
 import json
 
+import os
+
 from solver import optimize
 
 def deep_count(i):
@@ -152,12 +154,16 @@ def main():
         print(i, 'limit up', nudge_up(i, data, solution), file=f)
         print(i, 'limit down', nudge_down(i, data, solution), file=f)
         bar.update()
+        f.flush()
+        os.fsync(f.fileno())
 
     for i in to_nudge_once:
         for j in range(len(data[i])):
             print(i, j, 'limit up', nudge_up2(i, j, data, solution), file=f)
             print(i, j, 'limit down', nudge_down2(i, j, data, solution), file=f)
             bar.update()
+            f.flush()
+            os.fsync(f.fileno())
 
     for i in to_nudge_twice:
         for j in range(len(data[i])):
@@ -165,6 +171,8 @@ def main():
                 print(i, j, k, 'limit up', nudge_up3(i, j, k, data, solution), file=f)
                 print(i, j, k, 'limit down', nudge_down3(i, j, k, data, solution), file=f)
                 bar.update()
+                f.flush()
+                os.fsync(f.fileno())
 
     bar.close()
     f.close()
