@@ -167,6 +167,7 @@ def main():
                 bar.update()
 
     bar.close()
+    f.close()
 
 
 
