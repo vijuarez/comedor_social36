@@ -159,7 +159,7 @@ def main():
             print(i, j, 'limit down', nudge_down2(i, j, data, solution), file=f)
             bar.update()
 
-    for i in to_nudge_once:
+    for i in to_nudge_twice:
         for j in range(len(data[i])):
             for k in range(len(data[i][j])):
                 print(i, j, k, 'limit up', nudge_up3(i, j, k, data, solution), file=f)
